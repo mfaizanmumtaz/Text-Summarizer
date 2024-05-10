@@ -5,12 +5,12 @@ CONCISE SUMMARY:"""
 from langchain.schema.output_parser import StrOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
+import os
 
 prompt = PromptTemplate.from_template(prompt_template)
 
-llm = ChatGoogleGenerativeAI(temperature=0, model="gemini-pro")
+llm = ChatGoogleGenerativeAI(temperature=0, model="gemini-pro",google_api_key=os.getenv("GOOGLE_API_KEY"))
 chain = prompt | llm | StrOutputParser()
-
 
 import streamlit as st
 st.set_page_config(page_icon=":pencil2:", page_title="Text Summarizer")
